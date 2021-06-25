@@ -6,11 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
+      - uses: hashicorp/setup-terraform@v1
       - run: npm install -g bats
       - run: bats -v
       -
         name: TF apply
-        uses: hashicorp/setup-terraform@v1
         id: init
         run: terraform init -from-module=./terraform
       - 
