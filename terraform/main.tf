@@ -19,6 +19,15 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = "beholder-back"
+  }
+}
+
+resource "aws_ecr_repository" "beholder-back" {
+  name                 = "beholder-back"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
   }
 }
