@@ -9,13 +9,25 @@ jobs:
       - run: npm install -g bats
       - run: bats -v
       - 
-        name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
+        name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          context: ./back/
-          push: true
-          tags: user/app:latest
+          aws-access-key-id: ${{ secrets.ADMIN_USER_ID }}
+          aws-secret-access-key: ${{ secrets.ADMIN_USER_KEY }}
+          aws-region: us-east-1
+
       - 
-        name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      # - 
+      #   name: Build and push
+      #   id: docker_build
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: ./back/
+      #     push: true
+      #     tags: user/app:latest
+      # - 
+      #   name: Image digest
+      #   run: echo ${{ steps.docker_build.outputs.digest }}
