@@ -11,6 +11,7 @@ jobs:
       -
         name: TF apply
         uses: hashicorp/setup-terraform@v1
+        id: init
         run: terraform init -from-module=./terraform
       - 
         name: Configure AWS credentials
