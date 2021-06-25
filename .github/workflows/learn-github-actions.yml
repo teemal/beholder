@@ -23,7 +23,7 @@ jobs:
       -
         name: TF apply
         id: apply
-        run: terraform apply
+        run: terraform -chdir=./terraform apply -auto-approve
       - 
         name: Login to Amazon ECR
         id: login-ecr
