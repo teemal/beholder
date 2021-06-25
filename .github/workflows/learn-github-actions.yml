@@ -8,6 +8,10 @@ jobs:
       - uses: actions/setup-node@v1
       - run: npm install -g bats
       - run: bats -v
+      -
+        name: TF apply
+        uses: hashicorp/setup-terraform@v1
+        run: terraform apply
       - 
         name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
